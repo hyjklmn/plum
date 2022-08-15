@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@unocss/reset": "^0.45.6",
     "vue": "^3.2.37"
   },
   "devDependencies": {
