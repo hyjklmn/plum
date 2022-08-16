@@ -127,17 +127,17 @@ onMounted(() => {
         ref="el"
         :width="WIDTH"
         :height="HEIGHT"
-        border="~"
+        border="~ gray/30"
         rounded
       ></canvas>
       <button
-        border
+        border="~ gray/30"
         rounded
         p-2
         mt-3
         cursor-pointer
         @click="reDraw"
-        hover="bg-gray-500/10"
+        hover="bg-gray-300/10"
       >
         Redraw
       </button>
