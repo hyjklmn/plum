@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDark, useToggle } from "@vueuse/core"
-import logo from "../../public/favicon.svg"
+import logo from "/favicon.svg"
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
