@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { useDark, useToggle } from "@vueuse/core"
+import logo from "../../public/favicon.svg"
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
 <template>
-  <nav text-xl box-border p-5 float-right>
-    <button @click="toggleDark()" :style="{ color: isDark ? '#fff' : '' }">
+  <nav text-xl box-border relative h-40px select-none>
+    <img w-12 :src="logo" alt="logo" position="absolute left-5 top-50%" />
+    <button
+      position="absolute right-5 top-50%"
+      transform
+      @click="toggleDark()"
+      :style="{ color: isDark ? '#fff' : '' }"
+    >
       <svg
         v-if="isDark"
         xmlns="http://www.w3.org/2000/svg"
