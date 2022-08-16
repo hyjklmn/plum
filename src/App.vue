@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue"
+import Header from "./components/Header.vue"
 const el = ref<HTMLCanvasElement>()
 const ctxVal = computed(() => el.value!.getContext("2d"))
 const WIDTH = 800
@@ -25,7 +26,7 @@ function init() {
   const { x, y } = randomInitPostion()
   step({
     start: { x: WIDTH / 2, y: HEIGHT },
-    length: Math.random() * 50,
+    length: Math.random() * 15,
     theta: -Math.PI / 2,
   })
 }
@@ -78,10 +79,10 @@ function startFrame() {
 startFrame()
 function lineTo(p1: Point, p2: Point) {
   const ctx = ctxVal.value!
-  ctx.strokeStyle = "rgba(0,0,0,.15)"
+  ctx.strokeStyle = "rgba(107, 114, 128, 0.2)"
   ctx.shadowOffsetX = 0.5
   ctx.shadowOffsetY = 0.5
-  ctx.shadowColor = "rgba(0, 0, 0, 0.15)"
+  ctx.shadowColor = "rgba(107, 114, 128, 0.2)"
   ctx.beginPath()
   ctx.moveTo(p1.x, p1.y)
   ctx.lineTo(p2.x, p2.y)
@@ -98,30 +99,48 @@ function getEndPoint(b: Branch): Point {
 function drawBranch(b: Branch) {
   lineTo(b.start, getEndPoint(b))
 }
+function reDraw() {
+  ctxVal.value?.clearRect(0, 0, WIDTH, HEIGHT)
+  init()
+}
 onMounted(() => {
   init()
 })
 </script>
 
 <template>
-  <div
-    ref="box"
-    relative
-    h-100vh
-    top-0
-    bottom-0
-    left-0
-    right-0
-    pointer-events-none
-  >
+  <div ref="box" relative h-100vh top-0 bottom-0 left-0 right-0>
+    <Header />
+
     <div
       absolute
       transform
+      select-none
       style="translate: -50% -50%"
       class="top-50% left-50%"
     >
-      <p style="font-family: French Script MT; font-size: 50px">Plum</p>
-      <canvas ref="el" :width="WIDTH" :height="HEIGHT" border rounded></canvas>
+      <p style="font-family: French Script MT; font-size: 50px">
+        <span>Plum</span>
+      </p>
+
+      <canvas
+        ref="el"
+        :width="WIDTH"
+        :height="HEIGHT"
+        border="~"
+        rounded
+      ></canvas>
+      <button
+        border
+        rounded
+        p-2
+        mt-3
+        cursor-pointer
+        @click="reDraw"
+        hover="bg-gray-500/10"
+      >
+        Redraw
+      </button>
     </div>
   </div>
 </template>

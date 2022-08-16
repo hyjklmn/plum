@@ -1,9 +1,8 @@
-import path from "path";
-import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import Unocss from "unocss/vite";
-import { presetAttributify, presetUno } from "unocss";
-
+import path from "path"
+import { defineConfig } from "vite"
+import Vue from "@vitejs/plugin-vue"
+import Unocss from "unocss/vite"
+import { presetAttributify, presetUno } from "unocss"
 export default defineConfig({
   resolve: {
     alias: {
@@ -18,4 +17,4 @@ export default defineConfig({
       presets: [presetAttributify(), presetUno()],
     }),
   ],
-});
+})
