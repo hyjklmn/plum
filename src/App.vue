@@ -17,17 +17,20 @@ interface Branch {
   theta: number
 }
 function randomInitPostion() {
-  let x = Math.random() * WIDTH
-  let y = Math.random() * HEIGHT
+  let x = Math.floor(Math.random() * WIDTH)
+  let arr = [0, 600]
+  let r = Math.floor(Math.random() * arr.length)
+  let y = arr[r]
   return { x, y }
 }
 
 function init() {
   const { x, y } = randomInitPostion()
+
   step({
-    start: { x: WIDTH / 2, y: HEIGHT },
-    length: Math.random() * 15,
-    theta: -Math.PI / 2,
+    start: { x, y },
+    length: 5,
+    theta: y ? -Math.PI / 4 : Math.PI / 4,
   })
 }
 
@@ -36,7 +39,7 @@ const penddingTasks: Function[] = []
 function step(b: Branch, depth = 0) {
   const end = getEndPoint(b)
   drawBranch(b)
-  if (Math.random() < 0.5 || depth < 5) {
+  if (Math.random() < 0.5 || depth < 4) {
     penddingTasks.push(() =>
       step(
         {
@@ -48,7 +51,7 @@ function step(b: Branch, depth = 0) {
       )
     )
   }
-  if (Math.random() < 0.5 || depth < 5) {
+  if (Math.random() < 0.5 || depth < 4) {
     penddingTasks.push(() =>
       step(
         {
@@ -70,10 +73,11 @@ let framesCount = 0
 
 function startFrame() {
   requestAnimationFrame(() => {
-    if (framesCount % 10 === 0) {
+    framesCount += 1
+    if (framesCount % 3 === 0) {
       frame()
-      startFrame()
     }
+    startFrame()
   })
 }
 startFrame()
