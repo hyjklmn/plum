@@ -103,10 +103,6 @@ function getEndPoint(b: Branch): Point {
 function drawBranch(b: Branch) {
   lineTo(b.start, getEndPoint(b))
 }
-function reDraw() {
-  ctxVal.value?.clearRect(0, 0, WIDTH, HEIGHT)
-  init()
-}
 onMounted(() => {
   init()
 })
@@ -134,17 +130,6 @@ onMounted(() => {
         border="~ gray/30"
         rounded
       ></canvas>
-      <button
-        border="~ gray/30"
-        rounded
-        p-2
-        mt-3
-        cursor-pointer
-        @click="reDraw"
-        hover="bg-gray-300/10"
-      >
-        Redraw
-      </button>
     </div>
   </div>
 </template>
