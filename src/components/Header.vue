@@ -5,10 +5,19 @@ const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
 <template>
-  <nav text-xl box-border relative h-40px select-none>
-    <img w-12 :src="logo" alt="logo" position="absolute left-5 top-50%" />
+  <nav
+    text-xl
+    box-border
+    relative
+    select-none
+    flex="~"
+    items-center
+    justify-between
+    py-2
+    px-3
+  >
+    <img w-12 :src="logo" alt="logo" />
     <button
-      position="absolute right-5 top-50%"
       transform
       @click="toggleDark()"
       :style="{ color: isDark ? '#fff' : '' }"
@@ -43,8 +52,8 @@ const toggleDark = useToggle(isDark)
         v-else
         xmlns="http://www.w3.org/2000/svg"
         class="icon icon-tabler icon-tabler-moon"
-        width="30"
-        height="30"
+        width="25"
+        height="25"
         viewBox="0 0 24 24"
         stroke-width="1"
         stroke="currentColor"
@@ -62,7 +71,7 @@ const toggleDark = useToggle(isDark)
 </template>
 <style>
 html.dark {
-  background: #121212;
+  background: #111;
   color: #fff;
 }
 </style>
